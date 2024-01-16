@@ -96,6 +96,14 @@
       // this.setState({ selectedDate: "" });
     }
   };
+
+  handleCardClick = () => {
+    this.setState((prevState) => ({
+      isFlipped: !prevState.isFlipped,
+      showAnimation: !prevState.showAnimation,
+    }));
+  };
+
   return (
     <>
       <div>
