@@ -36,6 +36,66 @@
       this.setState({ selectedSign: selectedSign });
     });
   };
+  handleSignChange = (e) => {
+    const selectedSign = e.target.value;
+    let prediction = this.state.prediction;
+
+    if (selectedSign) {
+      switch (selectedSign) {
+        case "aries":
+          prediction = "Предсказание для Овна";
+          break;
+        case "taurus":
+          prediction = "Предсказание для Тельца";
+          break;
+        case "gemini":
+          prediction = "Предсказание для Близнецов";
+          break;
+        case "cancer":
+          prediction = "Предсказание для Рака";
+          break;
+        case "leo":
+          prediction = "Предсказание для Льва";
+          break;
+        case "virgo":
+          prediction = "Предсказание для Девы";
+          break;
+        case "libra":
+          prediction = "Предсказание для Весов";
+          break;
+        case "scorpio":
+          prediction = "Предсказание для Скорпиона";
+          break;
+        case "sagittarius":
+          prediction = "Предсказание для Стрельца";
+          break;
+        case "capricorn":
+          prediction = "Предсказание для Козерога";
+          break;
+        case "aquarius":
+          prediction = "Предсказание для Водолея";
+          break;
+        case "pisces":
+          prediction = "Предсказание для Рыб";
+          break;
+        default:
+          prediction = "Выберете дату или свой знак зодиака";
+      }
+    }
+    if (this.state.isFlipped) {
+      this.setState({
+        selectedSign,
+        prediction,
+        isFlipped: false,
+        showAnimation: false,
+      });
+    } else {
+      this.setState({ selectedSign, prediction, showAnimation: false });
+    }
+    if (this.state.selectedSign !== this.setState.selectedSign) {
+      // this.setState({ selectedDate: "" });
+    }
+  };
   return (
     <>
       <div>
