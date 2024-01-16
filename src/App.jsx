@@ -1,3 +1,18 @@
+import React, { Component } from "react";
+import "./App.scss";
+
+class Horoscope extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      prediction: "Выберете дату или свой знак зодиака",
+      isFlipped: false,
+      selectedDate: "",
+      selectedSign: "default",
+      showAnimation: false,
+    };
+  }
+
   handleDateChange = (e) => {
     const selectedDate = new Date(e.target.value);
     const month = selectedDate.getMonth() + 1;
@@ -36,6 +51,7 @@
       this.setState({ selectedSign: selectedSign });
     });
   };
+
   handleSignChange = (e) => {
     const selectedSign = e.target.value;
     let prediction = this.state.prediction;
@@ -104,30 +120,53 @@
     }));
   };
 
+  render() {
+    const { prediction, isFlipped, showAnimation, selectedDate, selectedSign } = this.state;
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="horoscope">
+        <h1>Гороскоп</h1>
+        <input
+          type="date"
+          value={selectedDate}
+          onChange={this.handleDateChange}
+        />
+        <select
+          value={selectedSign}
+          onChange={this.handleSignChange}
+        >
+          <option value="default">Выберите знак зодиака</option>
+          <option value="aries">Овен</option>
+          <option value="taurus">Телец</option>
+          <option value="gemini">Близнецы</option>
+          <option value="cancer">Рак</option>
+          <option value="leo">Лев</option>
+          <option value="virgo">Дева</option>
+          <option value="libra">Весы</option>
+          <option value="scorpio">Скорпион</option>
+          <option value="sagittarius">Стрелец</option>
+          <option value="capricorn">Козерог</option>
+          <option value="aquarius">Водолей</option>
+          <option value="pisces">Рыбы</option>
+        </select>
+        <div
+          className={`card ${isFlipped ? "is-flipped" : ""}`}
+          onClick={this.handleCardClick}
+        >
+          <div className="card-inner">
+            <div className="card-front">
+              <p>Показать предсказание</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+            <div className="card-back">
+              <p className={showAnimation ? "show-animation" : ""}>
+                {prediction}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    );
+  }
 }
 
-export default App
+export default Horoscope;
+
