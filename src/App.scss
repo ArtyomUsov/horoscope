@@ -1,0 +1,81 @@
+.horoscope {
+  text-align: center;
+  max-width: 300px;
+  margin: 0 500px;
+  padding: 20px;
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  input,
+  select {
+    margin-bottom: 10px;
+  }
+
+  .card {
+    perspective: 1000px;
+    width: 300px;
+    height: 530px;
+    position: relative;
+    cursor: pointer;
+    color: white;
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+
+      .card-front,
+      .card-back {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        backface-visibility: hidden;
+      }
+
+      .card-front {
+        transform: rotateY(0deg);
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url("/src/assets/images/card.jpg");
+        background-size: cover;
+      }
+
+      .card-back {
+        transform: rotateY(180deg);
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url("/src/assets/images/card.jpg");
+        background-size: cover;
+        p {
+          margin: 0;
+          max-width: 250px;
+          opacity: 0;
+        }
+        .show-animation {
+          animation: fadeIn 2s forwards;
+        }
+      }
+    }
+
+    &.is-flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
