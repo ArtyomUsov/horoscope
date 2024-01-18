@@ -16,8 +16,14 @@ const SunPhaseAndTime = () => {
       setSunPhase(data.results.sunrise);
     };
 
+    const interval = setInterval(() => {
+      getCurrentTime();
+    }, 1000);
+
     getCurrentTime();
     getSunPhase();
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
