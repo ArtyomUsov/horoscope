@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import DateSelection from "./DateSelection";
 import SignSelection from "./SignSelection";
 import Card from "./Card";
+import SunPhaseAndTime from "./SunPhaseAndTime";
 
 class Horoscope extends Component {
   constructor(props) {
@@ -180,6 +181,7 @@ class Horoscope extends Component {
     return (
       <div className="horoscope">
         <h1>Гороскоп</h1>
+        <SunPhaseAndTime/>
         <DateSelection
           onChange={this.handleDateChange}
           value={this.state.selectedDate}
