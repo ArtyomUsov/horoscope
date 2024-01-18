@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 class DateSelection extends Component {
   render() {
-    const selectedDate = this.props.selectedDate;
-    const handleDateChange = this.props.handleDateChange;
+    const selectedDate = this.props.value;
+    const handleDateChange = this.props.onChange;
     return (
       <>
         <input
